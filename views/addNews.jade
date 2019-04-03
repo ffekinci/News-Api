@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h2 HTML Forms
+    form(method='post', action='/api/news/')
+      | Title:
+      br
+      input(type='text', name='title')
+      br
+      | Image Url:
+      br
+      input(type='text', name='imageUrl')
+      br
+      |   Content:
+      br
+      textarea(name="content" rows="10" cols="30")
+      br
+      |  Cat:
+      select(name="categoryId")
+        each val in title
+          option(value=val) #{val}
+      br
+      br
+      input(type='submit')
+
