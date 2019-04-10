@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var newsRouter = require('./routes/news');
 var categoryRouter = require('./routes/category');
+var voteRouter = require('./routes/voting');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/category', categoryRouter);
+app.use('/api/vote', voteRouter);
 
 
 // catch 404 and forward to error handler
