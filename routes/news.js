@@ -53,7 +53,7 @@ router.delete('/:id', (req, res) => {
         res.json({status: 1});
     }).catch( (err) =>{
         res.json({status: 0, message: err});
-    });z
+    });
 });
 
 router.get('/:id', (req, res) => {

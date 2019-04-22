@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 module.exports = () => {
-    mongoose.connect('mongodb://localhost/yazlab2-2', {useNewUrlParser: true});
+    //mongodb://localhost/yazlab2-2
+    mongoose.connect('mongodb://yazlab22user:123456aa@ds145486.mlab.com:45486/newsapi', {useNewUrlParser: true});
 
     mongoose.connection.on('open', () => {
         console.log("MongoDB Connected!");

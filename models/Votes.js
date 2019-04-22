@@ -6,6 +6,10 @@ const VoteSchema = new mongoose.Schema({
         type: String,
         required: [true, '{PATH} alanı zorunlu!']
     },
+    news_id: {
+        type: String,
+        required: [true, '{PATH} alanı zorunlu!']
+    },
     vote: {
         type: Boolean,
         required: [true, '{PATH} alanı zorunlu!']

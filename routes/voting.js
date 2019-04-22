@@ -2,27 +2,37 @@ var express = require('express');
 var router = express.Router();
 
 const Vote = require('../models/Votes');
-const News = require('../models/News');
 
-/* GET home page. */
-router.get('/:device_id', function(req, res, next) {
-  Category.find({}, (err, data) => {
-    var cats = [];
+//Oy verilmiş mi ?
+router.get('/:device_id/:news_id', (req, res) => {
+    const promise = Vote.findOne({device_id: req.params.device_id, news_id: req.params.news_id});
 
-    for (var i = 0; i < data.length; i++) {
-      cats.push(data[i].title);
-    }
-    res.render('index', { title: cats });
-  });
+    promise.then((data) => {
+        res.json(data.vote);
+    }).catch( (err) =>{
+        res.json({status: 0, message: err});
+    });
 });
 
-router.get('/vote/:device_id/:vote', function(req, res, next) {
-  //Category.find({}, (err, data) => {
-    console.log(req.params.device_id + "<"+req.params.vote);
 
+router.get('/:device_id/:news_id/:vote', (req, res, next) => {
 
-    //res.render('index', { title: cats });
-  //});
+    const body = {device_id: req.params.device_id, news_id: req.params.news_id, vote: req.params.vote};
+    //console.log(body);
+
+    const news = new Vote(body);
+
+    const promise = news.save();
+
+    promise.then(() => {
+
+      res.json({status: 1});
+
+    }).catch(() => {
+
+      res.json({status: 0});
+    });
+
 });
 
 
