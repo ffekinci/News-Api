@@ -14,6 +14,17 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/lastNews', (req, res) => {
+    const promise = News.find({}).limit(1).sort({createdAt: -1});
+
+    promise.then((deta)=> {
+        res.json({version: deta[0]._id});
+    }).catch((err) => {
+
+    });
+
+});
+
 router.post('/', (req, res, next) => {
     //Category.find({title:req.body.categoryId}).categoryId
 
