@@ -3,13 +3,15 @@ html
   head
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+
   body
-    h2 Add Category
-    form(method='post', action='/api/category/')
-      | Title:
-      br
-      input(type='text', name='title')
-      br
-      br
-      input(type='submit')
+    h2 Home Page
+    a(href="../news")
+      button.btn.btn-primary.btn-lg(type='button') News
+    |
+    a(href="../category")
+      button.btn.btn-primary.btn-lg(type='button') Category
+
+
+
 

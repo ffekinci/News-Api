@@ -8,13 +8,13 @@ router.get('/:device_id/:news_id', (req, res) => {
     const promise = Vote.findOne({device_id: req.params.device_id, news_id: req.params.news_id});
 
     promise.then((data) => {
-        res.json(data.vote);
+        res.json({status: 1, vote: data.vote});
     }).catch( (err) =>{
         res.json({status: 0, message: err});
     });
 });
 
-
+//oy Ver ysada geri çek yada değiştir
 router.get('/:device_id/:news_id/:vote', (req, res, next) => {
 
     const body = {device_id: req.params.device_id, news_id: req.params.news_id, vote: req.params.vote};
@@ -25,21 +25,18 @@ router.get('/:device_id/:news_id/:vote', (req, res, next) => {
 
     promisefirst.then((deta) => {
 
-        console.log(deta.vote + " - "+ req.params.vote + ", is equal? " + (deta.vote == req.params.vote));
+        //console.log(deta.vote + " - "+ req.params.vote + ", is equal? " + (deta.vote.toString() == req.params.vote.toString()));
         if(deta.vote.toString() == req.params.vote.toString()){
             Vote.findByIdAndRemove(deta._id, () => {
 
-            res.json({stat: 0});
+            res.json({stat: 4});
             });
         }
-        else{
-            Vote.updateOne({device_id: req.params.device_id, news_id: req.params.news_id},{vote: req.params.vote}, () => {
+        else {
+            Vote.updateOne({device_id: req.params.device_id, news_id: req.params.news_id},{vote: req.params.vote}, (d2) => {
 
-                res.json({stat: 1, message: deta});
+                res.json({vote: req.params.vote});
             });
-
-
-
         }
 
     }).catch((er) => {
@@ -48,7 +45,7 @@ router.get('/:device_id/:news_id/:vote', (req, res, next) => {
         const promise = vote.save();
         promise.then((dat) => {
 
-        res.json({stat: 2, message: dat});
+        res.json({vote: dat.vote});
         }).catch((ers)=>{
             res.json({stat: 3});
         });

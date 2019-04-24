@@ -5,6 +5,12 @@ const Category = require('../models/Category');
 const News = require('../models/News');
 
 /* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { });
+
+});
+
+
 router.get('/addNews', function(req, res, next) {
   Category.find({}, (err, data) => {
     var cats = [];
@@ -12,7 +18,7 @@ router.get('/addNews', function(req, res, next) {
     for (var i = 0; i < data.length; i++) {
       cats.push(data[i].title);
     }
-    res.render('index', { title: cats });
+    res.render('addNews', { title: cats });
   });
 
 });
@@ -20,7 +26,7 @@ router.get('/addNews', function(req, res, next) {
 router.get('/addCat', function(req, res, next) {
   Category.find({}, (err, data) => {
 
-    res.render('index', { title: cats });
+    res.render('addCat', { });
   });
 
 });
@@ -30,6 +36,14 @@ router.get('/news', function(req, res, next) {
   News.find({}, (err, data) => {
 
     res.render('news', { news: data });
+  });
+
+});
+
+router.get('/category', function(req, res, next) {
+  Category.find({}, (err, data) => {
+
+    res.render('category', { cat: data });
   });
 
 });

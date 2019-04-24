@@ -11,18 +11,16 @@ html
       }
 
   body
-    h2 Haberler
-    a(href="../addNews")
-      button.btn.btn-primary.btn-lg(type='button') Create News
+    h2 Categories
+    a(href="../addCat")
+      button.btn.btn-primary.btn-lg(type='button') Add Category
 
     .tablo
       table.table
         tr
           th #
           th Title
-          th ImageUrl
-        each post, i in news
+        each post, i in cat
           tr
             th(scope='row') #{i}
             td #{post.title}
-            td #{post.imageUrl}
